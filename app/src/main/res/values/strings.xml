@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Ежедневник</string>
+    <string name="textViewName">Название</string>
+    <string name="textViewDescription">Описание</string>
+    <string name="textViewDate">Дата</string>
+    <string name="textViewTimeStart">Время начала</string>
+    <string name="textViewTimeFinish">Время окончания</string>
+    <string name="textViewTime">Время</string>
+    <string name="textViewTask">Задача</string>
+    <string name="buttonSave">Сохранить</string>
+    <string name="buttonDelete">Удалить</string>
+    <string name="buttonBack">Назад</string>
+    <string name="textViewAddingTask">Добавление задачи</string>
+    <string name="EmptyEditName">Заполните название</string>
+    <string name="EmptyEditDescription">Заполните описание</string>
+    <string name="EmptyEditDate">Заполните дату</string>
+    <string name="EmptyEditDateStart">Заполните время начала</string>
+    <string name="EmptyEditDateFinish">Заполните время окончания</string>
+    <string name="SuccessfulAdding">Сохранение прошло успешно</string>
+    <string name="IncorrectDates">Время начала должно быть меньше времени окончания</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
