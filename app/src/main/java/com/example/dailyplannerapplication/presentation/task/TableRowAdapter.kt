@@ -7,11 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dailyplannerapplication.R
 import com.example.dailyplannerapplication.domain.model.Task
+import com.example.dailyplannerapplication.domain.model.TaskWithTime
 import java.sql.Timestamp
 
 class TableRowAdapter : RecyclerView.Adapter<TableRowAdapter.ViewHolder>() {
 
-    private var listTask = emptyList<Task>()
+    private var listTask = ArrayList<TaskWithTime>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvTime: TextView = itemView.findViewById(R.id.tv_time)
@@ -26,10 +27,10 @@ class TableRowAdapter : RecyclerView.Adapter<TableRowAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val task = listTask[position]
-        val timeStart = getTime(task.dateStart)
-        val timeFinish = getTime(task.dateFinish)
-        val name = task.name
-        holder.tvTime.text = "$timeStart"
+        val timeStart = getTime(task.task.dateStart)
+        val timeFinish = getTime(task.task.dateFinish)
+        val name = task.task.name
+        holder.tvTime.text = task.time
         holder.tvTask.text = "$name, $timeStart - $timeFinish"
     }
 
@@ -40,7 +41,7 @@ class TableRowAdapter : RecyclerView.Adapter<TableRowAdapter.ViewHolder>() {
     override fun onViewAttachedToWindow(holder: ViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.itemView.setOnClickListener {
-            TasksFragment.clickTask(listTask[holder.adapterPosition])
+            TasksFragment.clickTask(listTask[holder.adapterPosition].task)
         }
     }
 
@@ -49,7 +50,14 @@ class TableRowAdapter : RecyclerView.Adapter<TableRowAdapter.ViewHolder>() {
     }
 
     fun setList(list: List<Task>) {
-        listTask = list
+        listTask = ArrayList()
+        for (task in list) {
+            val startTime = task.dateStart?.hours
+            val finishTime = task.dateFinish?.hours
+            for (i in startTime!!..finishTime!!) {
+                listTask.add(TaskWithTime(task, "$i:00"))
+            }
+        }
         notifyDataSetChanged()
     }
 

@@ -30,7 +30,7 @@ class TaskDaoTest {
         ).build()
         taskDao = database.getTaskDao()
     }
-    
+
     @After
     fun tearDown() {
         database.close()
